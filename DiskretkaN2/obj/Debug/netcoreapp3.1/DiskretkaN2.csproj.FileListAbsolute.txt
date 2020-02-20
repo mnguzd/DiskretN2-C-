@@ -1,0 +1,11 @@
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\obj\Debug\netcoreapp3.1\DiskretkaN2.csprojAssemblyReference.cache
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\obj\Debug\netcoreapp3.1\DiskretkaN2.AssemblyInfoInputs.cache
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\obj\Debug\netcoreapp3.1\DiskretkaN2.AssemblyInfo.cs
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\bin\Debug\netcoreapp3.1\DiskretkaN2.exe
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\bin\Debug\netcoreapp3.1\DiskretkaN2.deps.json
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\bin\Debug\netcoreapp3.1\DiskretkaN2.runtimeconfig.json
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\bin\Debug\netcoreapp3.1\DiskretkaN2.runtimeconfig.dev.json
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\bin\Debug\netcoreapp3.1\DiskretkaN2.dll
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\bin\Debug\netcoreapp3.1\DiskretkaN2.pdb
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\obj\Debug\netcoreapp3.1\DiskretkaN2.dll
+C:\Users\roman\Desktop\Coding\Projects C#\DiskretkaN2\DiskretkaN2\obj\Debug\netcoreapp3.1\DiskretkaN2.pdb
