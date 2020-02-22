@@ -4,9 +4,11 @@ namespace DiskretkaN2
 {
     class Program
     {
-        static Queue<int> Way = new Queue<int>();
+        static Queue<int> WayDFS = new Queue<int>();
+        static Queue<int> WayBFS = new Queue<int>();
         static int[][] SpisokSmezh = null;
-        static bool[][] Marked = null;
+        static bool[][] MarkedDFS = null;
+        static bool[][] MarkedBFS = null;
         static int V = new int();
         static int select = new int();
         private static void SpisokSmezh_Input()
@@ -52,13 +54,21 @@ namespace DiskretkaN2
                 SpisokSmezh[i] = vs[i].ToArray();
                 vs[i].Clear();
             }
-            Marked = null;Way.Clear();Way = new Queue<int>();GC.Collect();
-            Marked = new bool[V][];
+            MarkedDFS = null;WayDFS.Clear();WayDFS = new Queue<int>(); 
+            WayBFS.Clear(); WayBFS = new Queue<int>(); MarkedBFS = null;
+            GC.Collect();
+            MarkedDFS = new bool[V][];
             for (int i = 0; i < V; i++)
-                Marked[i] = new bool[SpisokSmezh[i].Length];
+                MarkedDFS[i] = new bool[SpisokSmezh[i].Length];
             for (int i = 0; i < V; i++)
                 for (int g = 0; g < SpisokSmezh[i].Length; g++)
-                    Marked[i][g] = false;
+                    MarkedDFS[i][g] = false;
+            MarkedBFS = new bool[V][];
+            for (int i = 0; i < V; i++)
+                MarkedBFS[i] = new bool[SpisokSmezh[i].Length];
+            for (int i = 0; i < V; i++)
+                for (int g = 0; g < SpisokSmezh[i].Length; g++)
+                    MarkedBFS[i][g] = false;
             Spisok_Output();
         }
         private static void Choose_Searching()
@@ -74,7 +84,7 @@ namespace DiskretkaN2
             switch (selection)
             {
                 case 1: Console.Clear(); Show_DFS(); break;
-                case 2: break;
+                case 2: Console.Clear(); Show_BFS(); break;
                 case 3:  Console.Clear(); SpisokSmezh_Input(); break;
                 default: Console.Clear(); SpisokSmezh_Input(); break;
             }
@@ -82,24 +92,32 @@ namespace DiskretkaN2
         private static void Show_DFS()
         {
             Console.ForegroundColor = ConsoleColor.Blue; Console.WriteLine("\n\tПуть обхода в глубину\n");
-            Console.Write("\t" + Way.Dequeue()); Console.ResetColor();
-            while (Way.Count != 0)
+            Console.Write("\t" + WayDFS.Dequeue()); Console.ResetColor();
+            while (WayDFS.Count != 0)
             {
                     Console.Write(" ---> "); Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write(Way.Dequeue()); Console.ResetColor();
+                    Console.Write(WayDFS.Dequeue()); Console.ResetColor();
             }
             Console.Write("\n\n Нажмите любую клавишу для выхода в меню выбора обхода: ");
             Console.ReadKey();
             Console.Clear(); Choose_Searching();
         }
+        private static void Show_BFS()
+        {
+            Console.Clear();
+            while (WayBFS.Count != 0)
+            {
+                Console.WriteLine(WayBFS.Dequeue());
+            }
+        }
         private static void DFS_Recurs(int V)
         {
-            if (!Way.Contains(V + 1)) 
-                Way.Enqueue(V + 1); 
+            if (!WayDFS.Contains(V + 1)) 
+                WayDFS.Enqueue(V + 1); 
             for (int i = 0; i < SpisokSmezh[V].Length; i++)
-                if (SpisokSmezh[V][i] != 0 && !Marked[V][i])
+                if (SpisokSmezh[V][i] != 0 && !MarkedDFS[V][i])
                 {
-                    Marked[V][i] = true;
+                    MarkedDFS[V][i] = true;
                     DFS_Recurs(SpisokSmezh[V][i] - 1);
                 }
         }
@@ -124,9 +142,32 @@ namespace DiskretkaN2
             select = Convert.ToInt32(Console.ReadLine());
             DFS_Recurs(select - 1);
             for (int i = 0; i < V; i++)
-                if (!Way.Contains(i + 1))
+                if (!WayDFS.Contains(i + 1))
                     DFS_Recurs(i);
+            BFS(select - 1);
             Choose_Searching();
+        }
+        private static void BFS(int Vers)
+        {
+            Queue<int> temp = new Queue<int>();
+            bool[] Marked = new bool[V];
+            for (int i = 0; i < V; i++)
+                Marked[i] = false;
+            Marked[Vers] = true;
+            temp.Enqueue(Vers);
+            while (temp.Count != 0)
+            {
+                Vers = temp.Dequeue();
+                WayBFS.Enqueue(Vers+1);
+                for (int i = 0; i < SpisokSmezh[Vers].Length - 1; i++)
+                {
+                    if (!Marked[i])
+                    {
+                        Marked[i] = true;
+                        temp.Enqueue(SpisokSmezh[Vers][i]);
+                    }
+                }
+            }
         }
         static void Main()
         {
