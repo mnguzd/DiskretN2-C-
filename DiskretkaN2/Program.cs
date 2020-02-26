@@ -155,18 +155,23 @@ namespace DiskretkaN2
                 Marked[i] = false;
             Marked[Vers] = true;
             temp.Enqueue(Vers);
+            WayBFS.Enqueue(Vers+1);
             while (temp.Count != 0)
             {
                 Vers = temp.Dequeue();
-                WayBFS.Enqueue(Vers+1);
-                for (int i = 0; i < SpisokSmezh[Vers].Length - 1; i++)
+                for (int i = 0; i < SpisokSmezh[Vers].Length-1; i++)
                 {
-                    if (!Marked[i])
+                    int jop = SpisokSmezh[Vers][i]-1;
+                    if (!Marked[jop])
                     {
-                        Marked[i] = true;
-                        temp.Enqueue(SpisokSmezh[Vers][i]);
+                        temp.Enqueue(jop);
+                        WayBFS.Enqueue(jop+1);
+                        Marked[jop] = true;
                     }
+
                 }
+
+
             }
         }
         static void Main()
