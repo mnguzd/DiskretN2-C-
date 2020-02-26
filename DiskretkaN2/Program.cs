@@ -98,17 +98,22 @@ namespace DiskretkaN2
                     Console.Write(" ---> "); Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write(WayDFS.Dequeue()); Console.ResetColor();
             }
-            Console.Write("\n\n Нажмите любую клавишу для выхода в меню выбора обхода: ");
+            Console.Write("\n\n Нажмите любую клавишу для ввода нового графа: ");
             Console.ReadKey();
-            Console.Clear(); Choose_Searching();
+            Console.Clear(); SpisokSmezh_Input();
         }
         private static void Show_BFS()
         {
-            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Blue; Console.WriteLine("\n\tПуть обхода в ширину\n");
+            Console.Write("\t" + WayDFS.Dequeue()); Console.ResetColor();
             while (WayBFS.Count != 0)
             {
-                Console.WriteLine(WayBFS.Dequeue());
+                Console.Write(" ---> "); Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(WayBFS.Dequeue()); Console.ResetColor();
             }
+            Console.Write("\n\n Нажмите любую клавишу для ввода нового графа: ");
+            Console.ReadKey();
+            Console.Clear(); SpisokSmezh_Input();
         }
         private static void DFS_Recurs(int V)
         {
@@ -151,27 +156,24 @@ namespace DiskretkaN2
         {
             Queue<int> temp = new Queue<int>();
             bool[] Marked = new bool[V];
+            int k = new int();
             for (int i = 0; i < V; i++)
                 Marked[i] = false;
             Marked[Vers] = true;
             temp.Enqueue(Vers);
-            WayBFS.Enqueue(Vers+1);
             while (temp.Count != 0)
             {
                 Vers = temp.Dequeue();
                 for (int i = 0; i < SpisokSmezh[Vers].Length-1; i++)
                 {
-                    int jop = SpisokSmezh[Vers][i]-1;
-                    if (!Marked[jop])
+                    k = SpisokSmezh[Vers][i]-1;
+                    if (!Marked[k])
                     {
-                        temp.Enqueue(jop);
-                        WayBFS.Enqueue(jop+1);
-                        Marked[jop] = true;
+                        temp.Enqueue(k);
+                        WayBFS.Enqueue(k+1);
+                        Marked[k] = true;
                     }
-
                 }
-
-
             }
         }
         static void Main()
