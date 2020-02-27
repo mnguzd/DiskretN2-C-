@@ -8,7 +8,6 @@ namespace DiskretkaN2
         static Queue<int> WayBFS = new Queue<int>();
         static int[][] SpisokSmezh = null;
         static bool[][] MarkedDFS = null;
-        static bool[][] MarkedBFS = null;
         static int V = new int();
         static int select = new int();
         private static void SpisokSmezh_Input()
@@ -54,21 +53,16 @@ namespace DiskretkaN2
                 SpisokSmezh[i] = vs[i].ToArray();
                 vs[i].Clear();
             }
-            MarkedDFS = null;WayDFS.Clear();WayDFS = new Queue<int>(); 
-            WayBFS.Clear(); WayBFS = new Queue<int>(); MarkedBFS = null;
-            GC.Collect();
+            MarkedDFS = null; WayDFS.Clear();
+            WayDFS = new Queue<int>(); 
+            WayBFS.Clear(); 
+            WayBFS = new Queue<int>();
             MarkedDFS = new bool[V][];
             for (int i = 0; i < V; i++)
                 MarkedDFS[i] = new bool[SpisokSmezh[i].Length];
             for (int i = 0; i < V; i++)
                 for (int g = 0; g < SpisokSmezh[i].Length; g++)
                     MarkedDFS[i][g] = false;
-            MarkedBFS = new bool[V][];
-            for (int i = 0; i < V; i++)
-                MarkedBFS[i] = new bool[SpisokSmezh[i].Length];
-            for (int i = 0; i < V; i++)
-                for (int g = 0; g < SpisokSmezh[i].Length; g++)
-                    MarkedBFS[i][g] = false;
             Spisok_Output();
         }
         private static void Choose_Searching()
